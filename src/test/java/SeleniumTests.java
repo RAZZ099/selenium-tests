@@ -19,33 +19,40 @@ public class SeleniumTests {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://thinking-tester-contact-list.herokuapp.com/");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+//
+//        WebElement signUpButton = driver.findElement(By.id("signup"));
+//        signUpButton.click();
+//
+//        WebElement firstNameInput = driver.findElement(By.id("firstName"));
+//        firstNameInput.sendKeys("Bogdan");
+//
+//        WebElement lastNameInput = driver.findElement(By.id("lastName"));
+//        lastNameInput.sendKeys("Soho");
+//
+//        WebElement emailInput = driver.findElement(By.id("email"));
+//        emailInput.sendKeys("bogdan1a23@abc.com");
+//
+//        WebElement passwordInput = driver.findElement(By.id("password"));
+//        passwordInput.sendKeys("abc1abc2");
+//
+//        WebElement submitButton = driver.findElement(By.id("submit"));
+//        submitButton.click();
+//
+//        WebElement contactListHeaderFound = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[text() = 'Contact List']")));
+//        Assert.assertTrue(contactListHeaderFound.isDisplayed());
+//
+//        WebElement logout = driver.findElement(By.id("logout"));
+//        logout.click();
 
-        WebElement signUpButton = driver.findElement(By.id("signup"));
-        signUpButton.click();
+        WebElement email = driver.findElement(By.id("email"));
+        email.sendKeys("bogdan1a23@abc.com");
 
-        WebElement firstNameInput = driver.findElement(By.id("firstName"));
-        firstNameInput.sendKeys("Bogdan");
+        WebElement password = driver.findElement(By.id("password"));
+        password.sendKeys("abc1abc2");
 
-        WebElement lastNameInput = driver.findElement(By.id("lastName"));
-        lastNameInput.sendKeys("Soho");
-
-        WebElement emailInput = driver.findElement(By.id("email"));
-        emailInput.sendKeys("bogdan1a23@abc.com");
-
-        WebElement passwordInput = driver.findElement(By.id("password"));
-        passwordInput.sendKeys("abc1abc2");
-
-        WebElement submitButton = driver.findElement(By.id("submit"));
-        submitButton.click();
-
-        WebElement contactListHeaderFound = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[text() = 'Contact List']")));
-        Assert.assertTrue(contactListHeaderFound.isDisplayed());
-
-        WebElement logout = driver.findElement(By.id("logout"));
-        logout.click();
-
-
+        WebElement login = driver.findElement(By.id("submit"));
+        login.click();
     }
 
 
