@@ -19,7 +19,7 @@ public class SeleniumTests {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://thinking-tester-contact-list.herokuapp.com/");
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 //
 //        WebElement signUpButton = driver.findElement(By.id("signup"));
 //        signUpButton.click();
@@ -53,6 +53,12 @@ public class SeleniumTests {
 
         WebElement login = driver.findElement(By.id("submit"));
         login.click();
+
+        WebElement contactListHeaderFound = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[text() = 'Contact List']")));
+        Assert.assertTrue(contactListHeaderFound.isDisplayed());
+
+        WebElement logout = driver.findElement(By.id("logout"));
+        logout.click();
     }
 
 
