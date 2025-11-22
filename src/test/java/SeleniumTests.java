@@ -44,9 +44,6 @@ public class SeleniumTests {
 
         driver.close();
 
-
-
-
     }
 
 
