@@ -15,7 +15,7 @@ public class SeleniumTests {
 
 
     @Test
-    public static void createUser(){
+    public static void createUser() {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://thinking-tester-contact-list.herokuapp.com/");
@@ -45,9 +45,25 @@ public class SeleniumTests {
         driver.close();
 
 
-
-
     }
 
+    @Test
+    public static void logoutUser() {
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get("https://thinking-tester-contact-list.herokuapp.com/");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
+        WebElement email = driver.findElement(By.id("email"));
+        email.sendKeys("stefanoprea@gmail.com");
+
+        WebElement password = driver.findElement(By.id("password"));
+        password.sendKeys("stefanoprea123");
+
+        WebElement submitButton = driver.findElement(By.id("submit"));
+        submitButton.click();
+
+        WebElement logoutButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("logout")));
+        logoutButton.click();
+    }
 }
