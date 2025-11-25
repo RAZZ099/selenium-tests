@@ -69,7 +69,7 @@ public class SeleniumTests {
 
 
         @Test
-        public static void AddNewContact () {
+        public static void AddNewContact() {
 
             ChromeDriver driver = new ChromeDriver();
             driver.manage().window().maximize();
@@ -106,6 +106,7 @@ public class SeleniumTests {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             WebElement contactDetailsPage = wait.until(ExpectedConditions.visibilityOf(contactDetails.contactDetailsPage));
             Assert.assertTrue(contactDetailsPage.isDisplayed());
-        }
 
-    }
+            driver.close();
+        }
+}
