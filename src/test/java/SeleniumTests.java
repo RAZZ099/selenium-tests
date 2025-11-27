@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import scoalaInformala.AddContactPage;
 import scoalaInformala.LandingPage;
 import scoalaInformala.ContactListPage;
 import utils.Utils;
@@ -61,6 +62,40 @@ public class SeleniumTests {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement contactListHeader = wait.until(ExpectedConditions.visibilityOf(contactListPage.contactListHeader));
         Assert.assertTrue(contactListHeader.isDisplayed());
+
+        driver.close();
+    }
+
+    @Test
+    public static void addContact(){
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get("https://thinking-tester-contact-list.herokuapp.com/");
+
+        LandingPage landingPage = new LandingPage(driver);
+        landingPage.emailInput.sendKeys("testr@tesr.com");
+        landingPage.passwordInput.sendKeys("testr123456789");
+        landingPage.submitButton.click();
+
+        ContactListPage  contactListPage = new ContactListPage(driver);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement contactListHeader = wait.until(ExpectedConditions.visibilityOf(contactListPage.contactListHeader));
+        Assert.assertTrue(contactListHeader.isDisplayed());
+        contactListPage.addANewContact.click();
+
+        AddContactPage addContactPage = new AddContactPage(driver);
+
+        addContactPage.firstNameInput.sendKeys("Daniel");
+        addContactPage.lastNameInput.sendKeys("Paun");
+        addContactPage.birthdateInput.sendKeys("1986-05-12");
+        addContactPage.emailInput.sendKeys("daniel.paun@gmail.com");
+        addContactPage.phoneInput.sendKeys("0774869123");
+        addContactPage.street1Input.sendKeys("Strada Padurii 4");
+        addContactPage.cityInput.sendKeys("Bucuresti");
+        addContactPage.stateProvinceInput.sendKeys("Sector 6");
+        addContactPage.postalCodeInput.sendKeys("061621");
+        addContactPage.countryInput.sendKeys("Romania");
+        addContactPage.submitButton.click();
 
         driver.close();
     }
