@@ -11,7 +11,6 @@ import java.time.Duration;
 
 public class ContactListTest {
 
-
     public static void addNewContactScenario() {
         WebDriver driver = null;
         try {
@@ -29,9 +28,7 @@ public class ContactListTest {
 
             String newUniqueEmail = newFirstName.toLowerCase() + "." + newLastName.toLowerCase() + System.currentTimeMillis() + "@test.com";
 
-
             LandingPage landingPage = new LandingPage(driver);
-
 
             landingPage.emailInput.sendKeys(userEmail);
             landingPage.passwordInput.sendKeys(userPassword);
@@ -42,7 +39,6 @@ public class ContactListTest {
             contactListPage.addANewContact.click();
 
             wait.until(ExpectedConditions.urlContains("/addContact"));
-
 
             AddContactPage addContactPage = new AddContactPage(driver);
 

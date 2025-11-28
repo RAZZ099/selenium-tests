@@ -14,8 +14,6 @@ public class AddContactPage {
         PageFactory.initElements(driver, this);
     }
 
-    // Elementele formularului Add Contact
-
     @FindBy(id = "firstName")
     public WebElement firstNameInput;
 
