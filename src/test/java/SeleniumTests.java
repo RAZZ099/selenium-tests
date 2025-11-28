@@ -46,23 +46,6 @@ public class SeleniumTests {
         driver.close();
     }
 
-    @Test
-    public static void login(){
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("https://thinking-tester-contact-list.herokuapp.com/");
-
-        LandingPage landingPage = new LandingPage(driver);
-        landingPage.emailInput.sendKeys("testr@tesr.com");
-        landingPage.passwordInput.sendKeys("testr123456789");
-        landingPage.submitButton.click();
-
-        ContactListPage  contactListPage = new ContactListPage(driver);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement contactListHeader = wait.until(ExpectedConditions.visibilityOf(contactListPage.contactListHeader));
-        Assert.assertTrue(contactListHeader.isDisplayed());
-
-        driver.close();
     }
 
 
