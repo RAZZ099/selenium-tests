@@ -1,5 +1,6 @@
 package travelProjectTests;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,11 +17,11 @@ import java.util.List;
 
 public class TravelProjectTests {
 
-
     @Test
-    public static void login(){
+    public static void easyJet(){
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
+
         driver.get("https://www.easyjet.com/en/");
 
         driver.findElement(By.id("ensCloseBanner")).click();
@@ -75,15 +76,25 @@ public class TravelProjectTests {
         WebElement submitElement = driver.findElement(By.xpath("//button[@data-testid='submit']"));
         submitElement.click();
 
-
-
-
-
-
     }
 
 
-        
+    @Test
+    public void cookiesTest() {
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get("https://www.kostal-solar-portal.com/#/");
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebElement element = (WebElement) js.executeScript("return document.querySelector('#usercentrics-root').shadowRoot.querySelector(\"button[data-testid='uc-accept-all-button']\");");
+        element.click();
+    }
 
 
 

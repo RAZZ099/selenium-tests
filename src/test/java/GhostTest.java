@@ -69,7 +69,6 @@ public class GhostTest {
         sliderInput.sendKeys(Keys.ARROW_RIGHT);
 
 
-
         WebElement audienceMembersNo = driver.findElement(By.xpath("//div[@id=\"planselect\"]//span[contains(@class, 'pink')]"));
         
         while (!(audienceMembersNo.getText().contains("25,000"))) {
@@ -82,8 +81,7 @@ public class GhostTest {
         Assert.assertTrue(classesForStartForFreeLink != null && classesForStartForFreeLink.contains("cursor-not-allowed"), "Expected 'cursor-not-allowed' class when CTA is disabled");
 
         WebElement publisherPrice = driver.findElement(By.xpath("//p[@data-price='publisher']"));
-        // String publisherPriceText = publisherPrice.getText();
-        // Assert.assertTrue(publisherPriceText.contains("141"), "Expected price for publisher to be $141 for 25k members, but found: " + publisherPriceText);
+
         String publisherPriceText = new WebDriverWait(driver, java.time.Duration.ofSeconds(10))
         .until(d -> {
             WebElement element = d.findElement(By.xpath("//p[@data-price='publisher']"));
