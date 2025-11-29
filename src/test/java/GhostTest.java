@@ -78,20 +78,28 @@ public class GhostTest {
         }
 
         WebElement startForFreeLink = driver.findElement(By.xpath("(//a[contains(@href, 'signup') and contains(text(), 'Try for free')])[1]"));
-        Assert.assertFalse(startForFreeLink.isEnabled());
-                
+        String classesForStartForFreeLink = startForFreeLink.getAttribute("class");
+        Assert.assertTrue(classesForStartForFreeLink != null && classesForStartForFreeLink.contains("cursor-not-allowed"), "Expected 'cursor-not-allowed' class when CTA is disabled");
+
+        WebElement publisherPrice = driver.findElement(By.xpath("//p[@data-price='publisher']"));
+        // String publisherPriceText = publisherPrice.getText();
+        // Assert.assertTrue(publisherPriceText.contains("141"), "Expected price for publisher to be $141 for 25k members, but found: " + publisherPriceText);
+        String publisherPriceText = new WebDriverWait(driver, java.time.Duration.ofSeconds(10))
+        .until(d -> {
+            WebElement element = d.findElement(By.xpath("//p[@data-price='publisher']"));
+            return element.getText().contains("141") ? element.getText() : null;
+        });
+
+        Assert.assertTrue(publisherPriceText.contains("141"), "Expected price for publisher to be $141 for 25k members, but found: " + publisherPriceText);
+
+
+                // driver.close();
     }
 
-        // driver.close();
+
 
         
-        
-
-
-        // while (!labelText.contains("25K")) {
-        //     sliderInput.sendKeys(Keys.ARROW_RIGHT);
-        //     labelText = sliderLabel.getText();
-        // }
+    
         
 
         
