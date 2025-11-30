@@ -4,19 +4,28 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+
 public class LandingPage {
     WebDriver driver;
-    WebElement emailInput;
-    WebElement passwordInput;
-    WebElement submitButton;
-    WebElement signUpButton;
+    public WebElement addNewContact;
+    public WebElement firstname;
+    public WebElement lastname;
+    public WebElement birthday;
+    public WebElement email;
+    public WebElement phone;
+    public WebElement submitButton;
+
 
     public LandingPage(WebDriver driver) {
         this.driver=driver;
-        this.emailInput= driver.findElement(By.id("email"));
-        this.passwordInput= driver.findElement(By.id("password"));
+        this.addNewContact= driver.findElement(By.id("add-contact"));
+        this.firstname= driver.findElement(By.id("firstname"));
+        this.lastname= driver.findElement(By.id("lastname"));
+        this.birthday= driver.findElement(By.id("birthdate"));
+        this.email= driver.findElement(By.id("email"));
+        this.phone=driver.findElement(By.id("phone"));
         this.submitButton= driver.findElement(By.id("submit"));
-        this.signUpButton= driver.findElement(By.id("signup"));
+
 
 
 

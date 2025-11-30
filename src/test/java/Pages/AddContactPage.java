@@ -1,3 +1,5 @@
+package Pages;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -6,23 +8,24 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
+import java.sql.Driver;
 import java.time.Duration;
 
-public class unNouContact {
+public class AddContactPage {
     @Test
-    public static void addContact(){
+    public static void addContact() {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://thinking-tester-contact-list.herokuapp.com/");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        WebElement EmailInput=driver.findElement(By.id("email"));
+        WebElement EmailInput = driver.findElement(By.id("email"));
         EmailInput.sendKeys("edith1@test.com");
 
-        WebElement passwordInput=driver.findElement(By.id("password"));
+        WebElement passwordInput = driver.findElement(By.id("password"));
         passwordInput.sendKeys("edith11..");
 
-        WebElement submitButton=driver.findElement(By.id("submit"));
+        WebElement submitButton = driver.findElement(By.id("submit"));
         submitButton.click();
 
         WebElement addNewContactButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("add-contact")));
@@ -45,7 +48,6 @@ public class unNouContact {
 
         WebElement submitButton2 = driver.findElement(By.id("submit"));
         submitButton2.click();
-
 
     }
 }
