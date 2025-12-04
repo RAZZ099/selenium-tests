@@ -1,4 +1,4 @@
-package Pages;
+package utils;
 
 import java.util.Random;
 
