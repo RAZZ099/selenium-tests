@@ -50,9 +50,7 @@ public class DifficultTests {
         pricingButton.click();
 
 
-
     }
-
 
 
 }
