@@ -7,7 +7,13 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.BlogPage;
+import pages.HeaderNavigation;
+import pages.HomePage;
+import pages.ResourcesPage;
 
 import java.time.Duration;
 
@@ -25,10 +31,51 @@ public class DifficultTests {
     prices have increased.
      */
 
+
+
+    private WebDriver driver;
+
+
+    @BeforeMethod
+    public void setUp{
+        driver = DriverFactory.getDriver();
+        driver.manage().window().maximize();
+    }
+
+    @AfterMethod
+    public void tearDown(){
+        DriverFactory.closeDriver();
+    }
+
+    @Test
+    public void ghostTestPom(){
+        // A. Navigate to https://ghost.org/
+        HomePage homePage = new HomePage(driver);
+        homePage.open();
+
+        //  B. Navigate to "Start here" section using the "Resources" menu.
+        HeaderNavigation headerNavigation = new HeaderNavigation(driver);
+        headerNavigation.clickResourcesButton();
+
+
+       // C. Search for “create new blog”
+        ResourcesPage resourcesPage = headerNavigation.clickStartHereButton();
+        resourcesPage.searchFor("create new blog");
+
+        // D. Open the 10th result
+        BlogPage blogPage = resourcesPage.clickTenthSearchResult();
+
+    }
+
+
+
+
+
+
     @Test
     public void firstTest(){
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
+//        WebDriver driver = new ChromeDriver();
+//        driver.manage().window().maximize();
         driver.get("https://ghost.org/");
 
         WebElement resourcesButton = driver.findElement(By.xpath("//button[span[text()='Resources']]"));
@@ -62,6 +109,11 @@ public class DifficultTests {
         Assert.assertEquals(businessPriceTextInitial, "199");
 
 
+        WebElement tryForFreeLinkStarter1 = driver.findElement(By.xpath("//a[contains(@href,'signup') and contains(text(), 'Try for free')]"));
+        String classesTryForFreeLinkStarter1 = tryForFreeLinkStarter1.getAttribute("class");
+        Assert.assertFalse(classesTryForFreeLinkStarter1.contains("opacity-60 cursor-not-allowed"));
+
+
 
 
 
@@ -86,7 +138,6 @@ public class DifficultTests {
 
 
 
-
 //        By businessPriceBy = By.xpath("//p[@data-price='business']");
         WebElement businessPriceUpdated = driver.findElement(By.xpath("//p[@data-price='business']"));
 
@@ -95,6 +146,14 @@ public class DifficultTests {
 
         String businessPriceTextUpdated = businessPriceUpdated.getText();
         Assert.assertEquals(businessPriceTextUpdated, "266");
+
+
+
+
+        WebElement tryForFreeLinkStarter2 = driver.findElement(By.xpath("//a[contains(@href,'signup') and contains(text(), 'Try for free')]"));
+        String classesTryForFreeLinkStarter2 = tryForFreeLinkStarter2.getAttribute("class");
+        Assert.assertTrue(classesTryForFreeLinkStarter2.contains("opacity-60 cursor-not-allowed"));
+
     }
 
 
