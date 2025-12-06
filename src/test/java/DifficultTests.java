@@ -87,8 +87,7 @@ public class DifficultTests {
 
 
 
-
-        By businessPriceBy = By.xpath("//p[@data-price='business']");
+//        By businessPriceBy = By.xpath("//p[@data-price='business']");
         WebElement businessPriceUpdated = driver.findElement(By.xpath("//p[@data-price='business']"));
 
 //        WebDriverWait customWait = new WebDriverWait(driver, Duration.ofSeconds(10));
