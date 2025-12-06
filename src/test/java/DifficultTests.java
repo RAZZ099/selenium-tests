@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -48,6 +49,14 @@ public class DifficultTests {
         actions.moveToElement(pricingButton).perform();
 
         pricingButton.click();
+
+        WebElement sliderInput = driver.findElement(By.xpath("//input[@id='members']"));
+
+        WebElement audienceMembersNo = driver.findElement(By.xpath("//span[contains(@class, 'js-tooltip-count')]"));
+
+        while (!(audienceMembersNo.getText().contains("25k"))) {
+            sliderInput.sendKeys(Keys.ARROW_RIGHT);
+        }
 
 
 
