@@ -6,9 +6,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.*;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
+import java.time.*;
 
 public class DifficultTests {
 
@@ -50,6 +51,17 @@ public class DifficultTests {
 
         pricingButton.click();
 
+
+//        WebElement publisherPriceInitial = driver.findElement(By.xpath("//p[@data-price='publisher']"));
+//
+//        String publisherPriceTextInitial = publisherPriceInitial.getText();
+//
+//        Assert.assertEquals(publisherPriceTextInitial, "29");
+
+        WebElement businessPriceInitial = driver.findElement(By.xpath("//p[@data-price='business']"));
+        String businessPriceTextInitial = businessPriceInitial.getText();
+        Assert.assertEquals(businessPriceTextInitial, "199");
+
         WebElement sliderInput = driver.findElement(By.xpath("//input[@id='members']"));
 
         WebElement audienceMembersNo = driver.findElement(By.xpath("//span[contains(@class, 'js-tooltip-count')]"));
@@ -58,6 +70,30 @@ public class DifficultTests {
             sliderInput.sendKeys(Keys.ARROW_RIGHT);
         }
 
+
+//        By publisherPriceBy = By.xpath("//p[@data-price='publisher']");
+//
+//        WebElement publisherPriceUpdated = driver.findElement(By.xpath("//p[@data-price='publisher']"));
+//
+//        WebDriverWait customWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//
+//        customWait.until(ExpectedConditions.textToBePresentInElementLocated(publisherPriceBy, "141"));
+//
+//        String publisherPriceTextUpdated = publisherPriceUpdated.getText();
+//
+//        Assert.assertEquals(publisherPriceTextUpdated, "141");
+
+        By businessPriceBy = By.xpath("//p[@data-price='business']");
+
+        WebElement businessPriceUpdated = driver.findElement(By.xpath("//p[@data-price='business']"));
+
+        WebDriverWait customsWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        customsWait.until(ExpectedConditions.textToBePresentInElementLocated(businessPriceBy, "266"));
+
+        String businessPriceTextUpdated = businessPriceUpdated.getText();
+
+        Assert.assertEquals(businessPriceTextUpdated,"266");
 
 
     }
