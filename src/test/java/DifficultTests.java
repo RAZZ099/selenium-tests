@@ -51,12 +51,15 @@ public class DifficultTests {
 
         pricingButton.click();
 
+        WebElement tryForFreeLinkStarter = driver.findElement(By.xpath("//a[contains(@href, 'signup') and contains(text(), 'Try for free')]"));
+        String classesTryForFreeLinkStarter = tryForFreeLinkStarter.getAttribute("class");
+        Assert.assertFalse(classesTryForFreeLinkStarter.contains("opacity-60 cursor-not-allowed"));
 
-//        WebElement publisherPriceInitial = driver.findElement(By.xpath("//p[@data-price='publisher']"));
-//
-//        String publisherPriceTextInitial = publisherPriceInitial.getText();
-//
-//        Assert.assertEquals(publisherPriceTextInitial, "29");
+        WebElement publisherPriceInitial = driver.findElement(By.xpath("//p[@data-price='publisher']"));
+
+        String publisherPriceTextInitial = publisherPriceInitial.getText();
+
+        Assert.assertEquals(publisherPriceTextInitial, "29");
 
         WebElement businessPriceInitial = driver.findElement(By.xpath("//p[@data-price='business']"));
         String businessPriceTextInitial = businessPriceInitial.getText();
@@ -71,17 +74,17 @@ public class DifficultTests {
         }
 
 
-//        By publisherPriceBy = By.xpath("//p[@data-price='publisher']");
-//
-//        WebElement publisherPriceUpdated = driver.findElement(By.xpath("//p[@data-price='publisher']"));
-//
-//        WebDriverWait customWait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//
-//        customWait.until(ExpectedConditions.textToBePresentInElementLocated(publisherPriceBy, "141"));
-//
-//        String publisherPriceTextUpdated = publisherPriceUpdated.getText();
-//
-//        Assert.assertEquals(publisherPriceTextUpdated, "141");
+        By publisherPriceBy = By.xpath("//p[@data-price='publisher']");
+
+        WebElement publisherPriceUpdated = driver.findElement(By.xpath("//p[@data-price='publisher']"));
+
+        WebDriverWait customWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        customWait.until(ExpectedConditions.textToBePresentInElementLocated(publisherPriceBy, "141"));
+
+        String publisherPriceTextUpdated = publisherPriceUpdated.getText();
+
+        Assert.assertEquals(publisherPriceTextUpdated, "141");
 
         By businessPriceBy = By.xpath("//p[@data-price='business']");
 
@@ -94,6 +97,10 @@ public class DifficultTests {
         String businessPriceTextUpdated = businessPriceUpdated.getText();
 
         Assert.assertEquals(businessPriceTextUpdated,"266");
+
+        WebElement tryForFreeLinkStarter2 = driver.findElement(By.xpath("//a[contains(@href, 'signup') and contains(text(), 'Try for free')]"));
+        String classesTryForFreeLinkStarter2 = tryForFreeLinkStarter2.getAttribute("class");
+        Assert.assertTrue(classesTryForFreeLinkStarter2.contains("opacity-60 cursor-not-allowed"));
 
 
     }
