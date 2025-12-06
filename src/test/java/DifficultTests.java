@@ -57,6 +57,10 @@ public class DifficultTests {
 
         Assert.assertEquals(publisherPriceTextInitial, "29");
 
+        WebElement tryForFreeLinkStarter = driver.findElement(By.xpath("//a[contains(@href, 'signup') and contains(text(), 'Try for free')]"));
+        String classesTryForFreeLinkStarter = tryForFreeLinkStarter.getAttribute("class");
+        Assert.assertFalse(classesTryForFreeLinkStarter.contains("opacity-60 cursor-not-allowed"));
+
         WebElement sliderInput = driver.findElement(By.xpath("//input[@id='members']"));
 
         WebElement audienceMembersNo = driver.findElement(By.xpath("//span[contains(@class, 'js-tooltip-count')]"));
@@ -77,6 +81,10 @@ public class DifficultTests {
         String publisherPriceTextUpdated = publisherPriceUpdated.getText();
 
         Assert.assertEquals(publisherPriceTextUpdated, "141");
+
+        WebElement tryForFreeLinkStarter2 = driver.findElement(By.xpath("//a[contains(@href, 'signup') and contains(text(), 'Try for free')]"));
+        String classesTryForFreeLinkStarter2 = tryForFreeLinkStarter2.getAttribute("class");
+        Assert.assertTrue(classesTryForFreeLinkStarter2.contains("opacity-60 cursor-not-allowed"));
 
 
 
