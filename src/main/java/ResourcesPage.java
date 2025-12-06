@@ -1,0 +1,19 @@
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class ResourcesPage {
+    WebDriver driver;
+
+    public ResourcesPage(WebDriver driver){
+        this.driver=driver;
+        PageFactory.initElements(driver, this);
+    }
+    @FindBy(xpath = "//p[contains(text(),'Start here')]")
+    private WebElement startHereButton;
+
+    public void clickStartHere(){
+        startHereButton.click();
+    }
+}
