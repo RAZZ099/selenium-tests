@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
@@ -25,7 +26,7 @@ public class DifficultTests {
      */
 
     @Test
-    public void firstTest(){
+    public void firstTest() {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://ghost.org/");
@@ -50,6 +51,12 @@ public class DifficultTests {
 
         pricingButton.click();
 
+        WebElement publisherPriceInitial = driver.findElement(By.xpath("//p[@data-price='publisher']"));
+
+        String publisherPriceTextInitial = publisherPriceInitial.getText();
+
+        Assert.assertEquals(publisherPriceTextInitial, "29");
+
         WebElement sliderInput = driver.findElement(By.xpath("//input[@id='members']"));
 
         WebElement audienceMembersNo = driver.findElement(By.xpath("//span[contains(@class, 'js-tooltip-count')]"));
@@ -59,9 +66,31 @@ public class DifficultTests {
         }
 
 
+        By publisherPriceBy = By.xpath("//p[@data-price='publisher']");
+
+        WebElement publisherPriceUpdated = driver.findElement(By.xpath("//p[@data-price='publisher']"));
+
+        WebDriverWait customWait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        customWait.until(ExpectedConditions.textToBePresentInElementLocated(publisherPriceBy, "141"));
+
+        String publisherPriceTextUpdated = publisherPriceUpdated.getText();
+
+        Assert.assertEquals(publisherPriceTextUpdated, "141");
+
+
+        By businessPriceBy = By.xpath("//p[@data-price='business']");
+
+        WebElement businessPriceUpdated = driver.findElement(By.xpath("//p[@data-price='business']"));
+
+
+
+        customWait.until(ExpectedConditions.textToBePresentInElementLocated(businessPriceBy, "266"));
+
+        String businessPriceTextUpdated = businessPriceUpdated.getText();
+
+        Assert.assertEquals(businessPriceTextUpdated, "266");
 
     }
-
-
-
 }
+
