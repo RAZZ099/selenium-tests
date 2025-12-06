@@ -6,8 +6,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import java.time.Duration;
 
 public class DifficultTests {
@@ -25,8 +25,9 @@ public class DifficultTests {
      */
 
     @Test
-    public void firstTest(){
+    public void firstTest() {
         WebDriver driver = new ChromeDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.manage().window().maximize();
         driver.get("https://ghost.org/");
 
@@ -50,18 +51,26 @@ public class DifficultTests {
 
         pricingButton.click();
 
-        WebElement sliderInput = driver.findElement(By.xpath("//input[@id='members']"));
+        WebElement publisherPrice = driver.findElement(By.xpath("//p[@data-price=\"publisher\"]"));
+        WebElement businessPrice = driver.findElement(By.xpath("//p[@data-price=\"business\"]"));
+        WebElement sliderInput = driver.findElement(By.xpath("//input[@id=\"members\"]"));
+        WebElement audienceMembersNo = driver.findElement(By.xpath("//span[contains(@class, \"js-tooltip-count\")]"));
 
-        WebElement audienceMembersNo = driver.findElement(By.xpath("//span[contains(@class, 'js-tooltip-count')]"));
+        Assert.assertEquals(audienceMembersNo.getText(), "1,000");
+        Assert.assertEquals(publisherPrice.getText(), "29");
+        Assert.assertEquals(businessPrice.getText(), "199");
 
         while (!(audienceMembersNo.getText().contains("25k"))) {
             sliderInput.sendKeys(Keys.ARROW_RIGHT);
         }
 
+        wait.until(ExpectedConditions.textToBePresentInElement(audienceMembersNo, "25k"));
+        wait.until(ExpectedConditions.textToBePresentInElement(publisherPrice, "141"));
+        wait.until(ExpectedConditions.textToBePresentInElement(businessPrice, "266"));
 
+        Assert.assertEquals(audienceMembersNo.getText(), "25k");
+        Assert.assertEquals(publisherPrice.getText(), "141");
+        Assert.assertEquals(businessPrice.getText(), "266");
 
     }
-
-
-
 }
