@@ -2,7 +2,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -14,6 +13,7 @@ import pages.BlogPage;
 import pages.HeaderNavigation;
 import pages.HomePage;
 import pages.ResourcesPage;
+import pages.PricingPage;
 import utils.DriverFactory;
 
 import java.time.Duration;
@@ -58,18 +58,20 @@ public class DifficultTests {
         resourcesPage.searchFor("create new blog");
 //        D. Open the 10th result
         BlogPage blogPage = resourcesPage.clickTenthSearchResult();
-
-
-
-
-
-
+//        E. Scroll to the top of the page and open the “Pricing” section
+        PricingPage pricingPage = headerNavigation.clickPricingButton();
+//        F. Change the “Based on an audience” slider to 25k members and verify that all the prices have increased.
+        pricingPage.verifyInitialPublisherPrice()
+                .verifyTryForFreeEnabledInitially()
+                .moveSliderTo25k()
+                .waitForUpdatedPrice()
+                .verifyUpdatedPublisherPrice()
+                .verifyTryForFreeDisabledAfterUpdate();
     }
 
 
-
     @Test
-    public void firstTest(){
+    public void firstTest() {
 
         driver.get("https://ghost.org/");
 
@@ -85,8 +87,6 @@ public class DifficultTests {
         WebElement tenthResult = new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@class='ais-Hits-item search-result-item'][10]")));
         tenthResult.click();
-
-
 
         WebElement pricingButton = driver.findElement(By.xpath("//a[text()='Pricing']"));
 
@@ -131,9 +131,7 @@ public class DifficultTests {
         Assert.assertTrue(classesTryForFreeLinkStarter2.contains("opacity-60 cursor-not-allowed"));
 
 
-
     }
-
 
 
 }
