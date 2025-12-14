@@ -10,10 +10,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.BlogPage;
-import pages.HeaderNavigation;
-import pages.HomePage;
-import pages.ResourcesPage;
+import pages.*;
 
 import java.time.Duration;
 
@@ -65,6 +62,16 @@ public class DifficultTests {
         // D. Open the 10th result
         BlogPage blogPage = resourcesPage.clickTenthSearchResult();
 
+        PricingPage pricingPage = headerNavigation.clickPricingButton();
+
+
+//        F. Change the “Based on an audience” slider to 25k members and verify that all the prices have increased.
+        pricingPage.PublisherPriceStarter();
+        pricingPage.tryForFreeLink();
+        pricingPage.moveSliderTo25k();
+        pricingPage.waitForUpdatedPrice();
+        pricingPage.verifyUpdatedPublisherPrice();
+        pricingPage.verifyTryForFreeDisabledAfterUpdate();
     }
 
 
