@@ -10,10 +10,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.BlogPage;
-import pages.HeaderNavigation;
-import pages.HomePage;
-import pages.ResourcesPage;
+import pages.*;
 import utils.DriverFactory;
 
 import java.time.Duration;
@@ -58,6 +55,21 @@ public class DifficultTests {
         resourcesPage.searchFor("create new blog");
 //        D. Open the 10th result
         BlogPage blogPage = resourcesPage.clickTenthSearchResult();
+ //       E. Scroll to the top of the page and open the “Pricing” section
+        PricingPage pricingPage = blogPage.clickPricing();
+//        F. Change the “Based on an audience” slider to 25k members and verify that all the
+//        prices have increased.
+        Assert.assertEquals(pricingPage.getPublisherPriceText(), "29");
+        Assert.assertFalse(pricingPage.getClassesTryForFreeLinkStarter().contains("opacity-60 cursor-not-allowed"));
+        pricingPage.moveSliderTo25k();
+        pricingPage.waitForPublisherPrice("141");
+        Assert.assertEquals(pricingPage.getPublisherPriceText(),"141");
+        Assert.assertTrue(pricingPage.isTryForFreeLinkStarterDisabled());
+
+
+
+
+
 
 
 
