@@ -55,6 +55,18 @@ public class DifficultTests {
         resourcesPage.searchFor("create new blog");
 //        D. Open the 10th result
         BlogPage blogPage = resourcesPage.clickTenthSearchResult();
+//        E. Scroll to the top of the page and open the “Pricing” section
+        PricingPage pricingPage = headerNavigation.clickPricingButton();
+//        F. Change the “Based on an audience” slider to 25k members and verify that all the
+//        prices have increased.
+        pricingPage.tryForFree();
+        pricingPage.verifyPublisherPriceInitial();
+        pricingPage.verifyBusinessPriceInitial();
+        pricingPage.moveSlider();
+        pricingPage.updatedPublisherPrice();
+        pricingPage.updatedBusinessPrice();
+        pricingPage.tryForFree2();
+
 
 
 
